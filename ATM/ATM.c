@@ -1,132 +1,130 @@
-/* Project Name is 'Basic ATM Functionality in C'*/
+
 #include<stdio.h>
 #include <string.h>
-// Global variable for balance initialization
-int bakiye=1000; // initial balance one thousand for everyone.
 
-void sifreilk () //function create
-{
-    char ilksifre[20];// Array to store the new password
+int bakiye=1000; 
+
+void sifreilk () 
+    char ilksifre[20];
     int i ;
-    printf(" Yeni sifre olusturunuz (sadece rakam kullanınız)");// Ask the user to create a password
-    scanf("%s",&ilksifre);// Take input for password
-        for(i = 0; ilksifre[i] != '\0'; i++) // Loop to check each character of the password
+    printf(" Yeni sifre olusturunuz (sadece rakam kullanınız)");
+    scanf("%s",&ilksifre);
+        for(i = 0; ilksifre[i] != '\0'; i++) 
             {
-        if(ilksifre[i] < '0' || ilksifre[i] > '9') // Check if the character is not a digit
+        if(ilksifre[i] < '0' || ilksifre[i] > '9') 
         {
-            printf("Hatalı şifre! Şifre yalnızca rakamlardan oluşmalıdır.\n");// Error if non-numeric character is found
-            return 0 ;// Exit the function
+            printf("Hatalı şifre! Şifre yalnızca rakamlardan oluşmalıdır.\n");
+            return 0 ;
 
         }
     }
-    printf ("Sifreniz:%s lütfen unutmayiniz. \n",ilksifre[20]);// Print the password (incorrect usage of array)
+    printf ("Sifreniz:%s lütfen unutmayiniz. \n",ilksifre[20]);
 }
 
-int bilgiler(int islem) //function create
+int bilgiler(int islem) 
 {
     int giris, cikis;
 
-    switch (islem) // Switch statement to handle different operations
+    switch (islem) 
     {
-        case 1:// Case 1: Check Balance
+        case 1:
 
-            printf("Bakiyeniz: %d\n", bakiye); // Display the current balance
+            printf("Bakiyeniz: %d\n", bakiye); 
             break;
 
-        case 2:// Case 2: Deposit Money
+        case 2:
 
-            printf("Yatirmak istediginiz tutari giriniz: ");// Ask the user to input the deposit amount
-            scanf("%d", &giris);// Take the deposit amount as input
-            bakiye += giris;// Add the deposit amount to the balance
-            printf("Yeni Bakiyeniz: %d\n", bakiye);// Display the new balance
+            printf("Yatirmak istediginiz tutari giriniz: ");
+            scanf("%d", &giris);
+            bakiye += giris;
+            printf("Yeni Bakiyeniz: %d\n", bakiye);
             break;
 
-        case 3:// Case 3: Withdraw Money
-
-            printf("Cekmek istediginiz tutari giriniz: ");// Ask the user to input the withdrawal amount
-            scanf("%d", &cikis);// Take the withdrawal amount as input
-              if (cikis > bakiye) // Check if the withdrawal amount exceeds the balance
+        case 3:
+            printf("Cekmek istediginiz tutari giriniz: ");
+            scanf("%d", &cikis);
+              if (cikis > bakiye) 
               {
-                printf("Yetersiz bakiye!\n");// Error message if insufficient balance
+                printf("Yetersiz bakiye!\n");
               }
                 else
                 {
-                    bakiye -= cikis;// Subtract the withdrawal amount from the balance
-                    printf("Yeni Bakiyeniz: %d\n", bakiye);// Display the new balance
+                    bakiye -= cikis;
+                    printf("Yeni Bakiyeniz: %d\n", bakiye);
                 }
         break;
 
-        case 4:// Case 4: Change Password
+        case 4:
 
-            sifreilk();// Call the password change function
+            sifreilk();
             break;
 
-        default:// Default case for invalid operations
+        default:
 
-            printf("Gecersiz islem.\n");// Error message for invalid operation
+            printf("Gecersiz islem.\n");
             break;
 
     }
 
-    return bakiye;// Return the updated balance
+    return bakiye;
 
 }
     int main ()
 {
       int sifre,islem,sonislem=1,yenisif;
-      char girilenSifre[20]="1234";// Default password is set to "1234"
+      char girilenSifre[20]="1234";
       printf("*** Welcome ***\n");
       printf("Þifrenizi Giriniz Eger Kart iadesi istiyorsanız 1 tuşlayınız yoksa herhangi bir rakamı tuşlayınız");
-       // Ask the user to enter a password or press 1 for card return
-      scanf("%s",&yenisif); // Take input for new password or card return
-        if(yenisif==1)// If the user presses 1, the program ends
+       
+      scanf("%s",&yenisif); 
+        if(yenisif==1)
             {
             return 0;
             }
 
          else
         {
-          printf("şifrenizi giriniz");// Ask the user to input the password
-          scanf("%s",&girilenSifre);// Take the input password
-
-            if (strcmp(girilenSifre, "1234") == 0)// Check if the entered password matches the default password "1234"
+          printf("şifrenizi giriniz");
+          scanf("%s",&girilenSifre);
+            if (strcmp(girilenSifre, "1234") == 0)
             {
 
                 do{
-                    // Show the transaction options menu
+                   
                     printf("Hangi iþlemi yapmak istiyorsunuz");
-                    printf("1:Bakiye Ögrenme\n");//Balance Learning
-                    printf("2:Para Yatirma\n");//Deposit
-                    printf("3:Para Çekme\n");//Withdraw money
-                    printf("4:Şifre Degiþtirme\n");// Change password
+                    printf("1:Bakiye Ögrenme\n");
+                    printf("2:Para Yatirma\n");
+                    printf("3:Para Çekme\n");
+                    printf("4:Şifre Degiþtirme\n");
                     printf("Hangi islemi yapcaksaniz onu tuslayiniz");
-                    scanf("%d",&islem);// Take the transaction type as input
-                    bakiye = bilgiler(islem); // Call the 'bilgiler' function to perform the selected operation
-                    printf("Son durumdaki bakiyeniz: %d\n", bakiye);// Display the updated balance
+                    scanf("%d",&islem);
+                    bakiye = bilgiler(islem); 
+                    printf("Son durumdaki bakiyeniz: %d\n", bakiye);
                     printf (" İşlem Yapmaya Devam Edicekmisiniz ");
-                    printf("İşlem yapmaya devam etmek istiyor musunuz?\n");// Ask if the user wants to continue or exit the system
-                    printf("1: Evet\n");//1:Yes
-                    printf("2: Hayır\n");//2:No
+                    printf("İşlem yapmaya devam etmek istiyor musunuz?\n");
+                    printf("1: Evet\n");
+                    printf("2: Hayır\n");
                     scanf("%d", &sonislem);
 
-                if (sonislem != 1 && sonislem != 2) // If invalid input is given, the program exits
+                if (sonislem != 1 && sonislem != 2) 
                 {
                     printf("Hatalı giriş yaptınız!\n");
                     return 0;
                         }
                 }
-                    while (sonislem == 1);// If user selects "Yes" (1), the loop continues
+                    while (sonislem == 1);
 
-                        if(sonislem==2) // If user selects "No" (2), exit the program
+                        if(sonislem==2) 
                             {
-                        printf ("Bizi Kullandıgınız için teşekkür ederiz");// Display thank you message
+                        printf ("Bizi Kullandıgınız için teşekkür ederiz");
                             }
             }
-                            else // If the entered password is incorrect
+                            else 
                             {
-                                printf("Hatali şifre girmişssiniz");// Error message for incorrect password
+                                printf("Hatali şifre girmişssiniz");
                             }
         }
 
-    return 0;// End the program
+    return 0;
+
 }
